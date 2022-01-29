@@ -1,0 +1,29 @@
+{
+  "name": "mmdzov",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./build/cli.js",
+  "bin": {
+    "mmdzov": "./build/cli.js"
+  },
+  "scripts": {
+    "start:build": "tsc -w",
+    "start:watch": "nodemon build/cli.js",
+    "start": "concurrently npm:start:*"
+  },
+  "keywords": [],
+  "author": "mmdzov",
+  "license": "ISC",
+  "dependencies": {
+    "@mmdzov/pswd": "^1.5.0",
+    "chalk": "^4.1.2",
+    "yargs": "^17.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.13",
+    "@types/yargs": "^17.0.8",
+    "concurrently": "^7.0.0",
+    "nodemon": "^2.0.15",
+    "typescript": "^4.5.5"
+  }
+}
