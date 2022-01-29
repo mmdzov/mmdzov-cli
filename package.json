@@ -17,10 +17,13 @@
   "dependencies": {
     "@mmdzov/pswd": "^1.5.0",
     "chalk": "^4.1.2",
+    "degit": "^2.8.4",
+    "shelljs": "^0.8.5",
     "yargs": "^17.3.1"
   },
   "devDependencies": {
     "@types/node": "^17.0.13",
+    "@types/shelljs": "^0.8.11",
     "@types/yargs": "^17.0.8",
     "concurrently": "^7.0.0",
     "nodemon": "^2.0.15",
