@@ -8,7 +8,9 @@ const typingMode = (word: string) => {
     console.clear();
     const calc = index === chunks.length;
     console.log(
-      chalk.blueBright(`${chunks.slice(0, index).join("")}${calc ? "" : "|"}`)
+      chalk.magentaBright(
+        `${chunks.slice(0, index).join("")}${calc ? "" : "|"}`
+      )
     );
     if (index >= chunks.length) clearInterval(intv);
     else index++;

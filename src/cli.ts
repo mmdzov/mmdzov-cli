@@ -11,10 +11,14 @@ cli.scriptName("mmdzov");
 
 cli.command(
   "$0",
-  "main description cli",
+  "main description",
   (yrg) => {},
   () => {
-    const word = "try mmdzov -h to more help";
+    const word = `${chalk.bold(
+      chalk.white(`Hi i'm mmdzov`)
+    )} I make development and programming very simple. You can try ${chalk.blue(
+      chalk.italic("mmdzov help")
+    )} for more help`;
     typingMode(word);
   }
 );
