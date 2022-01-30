@@ -7,6 +7,7 @@ import chalk from "chalk";
 import { exec, ExecOptions } from "child_process";
 import path from "path";
 import fs from "fs";
+import typingMode from "../utils/TypingMode";
 
 const spin = new Spinner();
 
@@ -69,7 +70,7 @@ const installDeps = async () => {
 
 const tenStackInit = (cli: Argv<{}>) => {
   cli.command(
-    "$0 use ten-stack <project-name>",
+    "use ten-stack <project-name>",
     "install ten-stack-starter",
     (yrg) => {},
     async (args) => {
@@ -107,7 +108,7 @@ const tenStackInit = (cli: Argv<{}>) => {
 
       await asyncExec(`git add . & git commit -m "Initialized ${projectName}"`);
 
-      console.log(chalk.blue("Happy Hacking :)"));
+      typingMode("Happy Hacking :)");
     }
   );
 };

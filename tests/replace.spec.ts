@@ -13,6 +13,5 @@ describe("ten-stack replaces", () => {
     delete packageJson.bugs;
     delete packageJson.homepage;
     // fs.writeFileSync(route, JSON.stringify(packageJson));
-    console.log(__dirname)
   });
 });
