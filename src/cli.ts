@@ -7,6 +7,7 @@ import tenStackInit from "./ten-stack/ten-stack.init";
 import tenStackInstall from "./ten-stack/ten-stack.install";
 import tenStackUpdate from "./ten-stack/ten-stack.update";
 import typingMode from "./utils/typingMode";
+import Table from "cli-table";
 
 const cli = yargs;
 
@@ -26,11 +27,38 @@ cli.command(
   }
 );
 
+cli.command(
+  "h",
+  "mmdzov help",
+  () => {},
+  () => {
+    var table = new Table({
+      head: ["description", "command"],
+    });
+
+    table.push(
+      {
+        "install ten": "mmdzov i ten",
+      },
+      {
+        "update ten": "mmdzov u ten",
+      },
+      {
+        "initial ten project": "mmdzov use ten-stack <project-name>",
+      },
+      {
+        "resource ten": "mmdzov ten res <resource-name>",
+      }
+    );
+
+    console.log(chalk.bold(chalk.blueBright("TEN-Stack-Starter")));
+    console.log(table.toString());
+  }
+);
+
 tenStackInit(cli);
 tenStackResource(cli);
 tenStackInstall(cli);
 tenStackUpdate(cli);
-
-cli.help("h").alias("h", "help");
 
 cli.argv;

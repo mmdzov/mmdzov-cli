@@ -63,7 +63,7 @@ const installDeps = async () => {
 
 const tenStackInit = (cli: Argv<{}>) => {
   cli.command(
-    "use ten-stack <project-name>",
+    "use ten <project-name>",
     "install ten-stack-starter",
     (yrg) => {},
     async (args) => {

@@ -4,7 +4,7 @@ import globalInstall from "../utils/globalInstall";
 
 const tenStackUpdate = (cli: Argv<{}>) => {
   cli.command(
-    "up ten",
+    "u ten",
     "globally update ten-stack-starter",
     () => {},
     async (yargs) => {
