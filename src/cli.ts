@@ -21,8 +21,8 @@ cli.command(
     const word = `${chalk.bold(
       chalk.white(`Hi i'm mmdzov`)
     )} I make development and programming very simple. You can try ${chalk.blue(
-      chalk.italic("mmdzov help")
-    )} for more help`;
+      chalk.italic("mmdzov h")
+    )} for full help`;
     typingMode(word);
   }
 );
