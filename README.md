@@ -1,7 +1,7 @@
 # mmdzov-cli
-A powerful cli for comfortable development. It is constantly being updated!
+A powerful cli for comfortable development. **It is constantly being updated!**
 
-FIRST STEP 
+### FIRST STEP 
 ```npm
 npm i mmdzov-cli
 ```
