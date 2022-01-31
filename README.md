@@ -6,7 +6,15 @@ A powerful cli for comfortable development. **It is constantly being updated!**
 npm i mmdzov-cli
 ```
 
-And then send `mmdzov` to the command line
+### About CLI
+```npm
+mmdzov
+```
+
+### Help
+```npm
+mmdzov h
+```
 
 ## [TEN-Stack-Starter](https://github.com/mytls/ten-stack-starter)
 
