@@ -44,7 +44,7 @@ cli.command(
         "update ten": "mmdzov u ten",
       },
       {
-        "initial ten project": "mmdzov use ten-stack <project-name>",
+        "initial ten project": "mmdzov use ten <project-name>",
       },
       {
         "resource ten": "mmdzov ten res <resource-name>",
