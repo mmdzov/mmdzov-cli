@@ -26,13 +26,19 @@ describe("ten-stack replaces", () => {
   });
 });
 
-describe("should to be beautiful console.log", () => {
-  it("should to be handle multiple colors", () => {
-    const word = `${chalk.bold(
-      chalk.white("Hi i'm mmdzov")
-    )} I make development and programming very simple. You can try ${chalk.blue(
-      chalk.italic("mmdzov help")
-    )} for more help`;
-    typingMode(word);
+// describe("should to be beautiful console.log", () => {
+//   it("should to be handle multiple colors", () => {
+//     const word = `${chalk.bold(
+//       chalk.white("Hi i'm mmdzov")
+//     )} I make development and programming very simple. You can try ${chalk.blue(
+//       chalk.italic("mmdzov help")
+//     )} for more help`;
+//     typingMode(word);
+//   });
+// });
+
+describe("should to be download files", () => {
+  it("should to be dowload zip file", () => {
+    console.log(cwd(), __dirname);
   });
 });

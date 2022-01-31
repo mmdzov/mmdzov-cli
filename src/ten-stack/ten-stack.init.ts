@@ -4,21 +4,12 @@ import { Argv } from "yargs";
 import shell from "shelljs";
 import Spinner from "../utils/Spinner";
 import chalk from "chalk";
-import { exec, ExecOptions } from "child_process";
 import path from "path";
 import fs from "fs";
-import typingMode from "../utils/TypingMode";
+import typingMode from "../utils/typingMode";
+import asyncExec from "../utils/asyncExec";
 
 const spin = new Spinner();
-
-function asyncExec(cmd: string, options: Partial<ExecOptions> = {}) {
-  return new Promise((res, rej) => {
-    exec(cmd, options, (err, stdout, stderr) => {
-      if (err) rej(err);
-      res(stdout ? stdout : stderr);
-    });
-  });
-}
 
 const cloneProject = async (args: any) => {
   let clonePath = "";
