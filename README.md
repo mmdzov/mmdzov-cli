@@ -3,7 +3,7 @@ A powerful cli for comfortable development. **It is constantly being updated!**
 
 ### FIRST STEP 
 ```npm
-npm i mmdzov-cli
+npm i -g mmdzov-cli
 ```
 
 ### About CLI
