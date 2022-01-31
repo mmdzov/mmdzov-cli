@@ -6,27 +6,26 @@ import fs from "fs";
 import https from "https";
 import { cwd } from "process";
 import cliPath from "../utils/cliPath";
+import copyAllFiles from "./../utils/copyAllFiles";
+import Spinner from "../utils/Spinner";
+import chalk from "chalk";
 
 const tenStackResource = (cli: Argv<{}>) => {
   cli.command(
     "ten res <res-name>",
-    "add ten-stack resource",
+    "generate ten-stack resource",
     async () => {},
     (args: any) => {
-      const projectPath = shell.pwd();
+      const spinner = new Spinner().start("Generating Resource");
+      const projectPath = shell.pwd().stdout;
       const clipath = cliPath();
       const srcpath = join(clipath, "/$ten-stack/src/components/home");
-      // shell.cd();
-      // const result = fs.cp(srcpath,)
-      // console.log(result);
-      // const route = path.join(shell.pwd().stdout, "/src");
-      // console.log(route, args);
-      // download("https://github.com/mmdzov/mmdzov-cli/archive/refs/heads/main.zip",)
-      // console.log(cwd(), __dirname);
-      // shell.cd("src");
-      // shell.cd("components");
-      // shell.mkdir(args?.resName);
-      // shell.cd(args?.resName);
+      copyAllFiles(
+        srcpath,
+        join(`${projectPath}/src/components/`, args?.resName)
+      );
+      spinner.stop();
+      console.log(chalk.magenta("Resource Was Generated"));
     }
   );
 };

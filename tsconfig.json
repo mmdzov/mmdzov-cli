@@ -103,7 +103,7 @@
     "build",
     "dist",
     "node_modules",
-    "tests/*",
+    "src/tests/*",
     "src/**/*.json",
     "src/*.json"
   ]

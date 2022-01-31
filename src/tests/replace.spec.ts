@@ -3,8 +3,8 @@ import fs from "fs";
 import { cwd } from "process";
 import path, { join } from "path";
 import chalk from "chalk";
-import typingMode from "./../src/utils/typingMode";
-import copyAllFiles from "./../src/utils/copyAllFiles";
+import typingMode from "../utils/typingMode";
+import copyAllFiles from "../utils/copyAllFiles";
 
 // describe("ten-stack replaces", () => {
 // it("should to be replace package.json", () => {
@@ -29,11 +29,3 @@ import copyAllFiles from "./../src/utils/copyAllFiles";
 //     typingMode(word);
 //   });
 // });
-
-describe("should to be copy and paste files", () => {
-  const dest =
-    "C:\\Users\\pars\\Desktop\\@mmdzov\\mmdzov\\$ten-stack\\src\\components\\home";
-  const pth = join(dest);
-
-  copyAllFiles(pth, join(cwd(), "/resource-example"));
-});
