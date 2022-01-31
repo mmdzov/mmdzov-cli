@@ -8,6 +8,7 @@ import path from "path";
 import fs from "fs";
 import typingMode from "../utils/typingMode";
 import asyncExec from "../utils/asyncExec";
+import globalInstall from "../utils/globalInstall";
 
 const spin = new Spinner();
 
@@ -19,10 +20,11 @@ const cloneProject = async (args: any) => {
   else clonePath = args?.projectName! as string;
 
   try {
-    await asyncExec(
-      `degit https://github.com/mytls/ten-stack-starter.git ${args.projectName}`,
-      { windowsHide: true }
-    );
+    const repo = "https://github.com/mytls/ten-stack-starter.git";
+    await asyncExec(`degit ${repo} ${args.projectName}`, { windowsHide: true });
+    await globalInstall("ten-stack", repo, {
+      noSpinner: true,
+    });
     if (clonePath !== "here") shell.cd(clonePath);
 
     spinner.stop();

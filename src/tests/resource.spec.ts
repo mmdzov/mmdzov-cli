@@ -2,7 +2,6 @@ import { describe } from "mocha";
 import { join } from "path";
 import copyAllFiles from "../utils/copyAllFiles";
 import { cwd } from "process";
-import fs from "fs";
 
 describe("should to be copy and paste files", () => {
   it("should to be generate new resource", () => {

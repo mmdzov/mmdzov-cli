@@ -5,16 +5,28 @@ import cliPath from "./cliPath";
 import Spinner from "./Spinner";
 import fs from "fs";
 import { join } from "path";
+import { Ora } from "ora";
 
-const globalInstall = async (dir: string, repo: string) => {
-  const spinner = new Spinner().start("Installing");
+const globalInstall = async (
+  dir: string,
+  repo: string,
+  config: { noSpinner?: boolean } = {
+    noSpinner: false,
+  }
+) => {
+  let spinner: Ora;
+  if (!config.noSpinner) {
+    spinner = new Spinner().start("Installing");
+  }
   const projectPath = shell.pwd().stdout;
   const clipath = cliPath();
   fs.rmSync(join(clipath, `/$${dir}`), { recursive: true, force: true });
   shell.mkdir(["$" + dir]);
   await asyncExec(`degit ${repo} $${dir}`);
-  spinner.stop();
-  console.log(chalk.magentaBright("Installed Successfully"));
+  if (!config.noSpinner) {
+    (spinner! as Ora).stop();
+    console.log(chalk.magentaBright("Installed Successfully"));
+  }
   return projectPath;
 };
 
