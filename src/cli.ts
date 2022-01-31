@@ -4,6 +4,7 @@ import chalk from "chalk";
 import yargs from "yargs";
 import tenStackResource from "./ten-stack/ten-stack-resource";
 import tenStackInit from "./ten-stack/ten-stack.init";
+import tenStackInstall from "./ten-stack/ten-stack.install";
 import typingMode from "./utils/typingMode";
 
 const cli = yargs;
@@ -25,8 +26,8 @@ cli.command(
 );
 
 tenStackInit(cli);
-tenStackResource(cli)
-
+tenStackResource(cli);
+tenStackInstall(cli);
 
 cli.help("h").alias("h", "help");
 

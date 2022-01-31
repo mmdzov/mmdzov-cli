@@ -1,20 +1,20 @@
 import { Argv } from "yargs";
 import shell from "shelljs";
-import Spinner from "./../utils/Spinner";
-import chalk from "chalk";
-import cliPath from "../utils/cliPath";
 import globalInstall from "../utils/globalInstall";
+import { join } from "path";
 
 const tenStackInstall = (cli: Argv<{}>) => {
   cli.command(
     "i ten",
     "globally install ten-stack-starter",
     () => {},
-    (yargs) => {
-      globalInstall(
+    async (yargs) => {
+      const path = await globalInstall(
         "$ten-stack",
         "https://github.com/mytls/ten-stack-starter.git"
       );
+      shell.cd("/");
+      shell.cd(path);
     }
   );
 };
