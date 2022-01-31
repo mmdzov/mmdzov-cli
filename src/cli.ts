@@ -5,6 +5,7 @@ import yargs from "yargs";
 import tenStackResource from "./ten-stack/ten-stack-resource";
 import tenStackInit from "./ten-stack/ten-stack.init";
 import tenStackInstall from "./ten-stack/ten-stack.install";
+import tenStackUpdate from "./ten-stack/ten-stack.update";
 import typingMode from "./utils/typingMode";
 
 const cli = yargs;
@@ -28,6 +29,7 @@ cli.command(
 tenStackInit(cli);
 tenStackResource(cli);
 tenStackInstall(cli);
+tenStackUpdate(cli);
 
 cli.help("h").alias("h", "help");
 

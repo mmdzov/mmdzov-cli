@@ -1,12 +1,11 @@
 import { Argv } from "yargs";
 import shell from "shelljs";
 import globalInstall from "../utils/globalInstall";
-import { join } from "path";
 
-const tenStackInstall = (cli: Argv<{}>) => {
+const tenStackUpdate = (cli: Argv<{}>) => {
   cli.command(
-    "i ten",
-    "globally install ten-stack-starter",
+    "up ten",
+    "globally update ten-stack-starter",
     () => {},
     async (yargs) => {
       const path = await globalInstall(
@@ -19,4 +18,4 @@ const tenStackInstall = (cli: Argv<{}>) => {
   );
 };
 
-export default tenStackInstall;
+export default tenStackUpdate;
