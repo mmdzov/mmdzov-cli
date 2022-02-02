@@ -42,3 +42,5 @@ const addAppRoute = (text: string, name: string) => {
 
   return result;
 };
+
+export default addAppRoute;
