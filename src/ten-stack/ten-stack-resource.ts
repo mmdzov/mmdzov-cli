@@ -30,4 +30,4 @@ const tenStackResource = (cli: Argv<{}>) => {
   );
 };
 
-export default tenStackResource;
+export { tenStackResource };

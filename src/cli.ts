@@ -2,7 +2,7 @@
 
 import chalk from "chalk";
 import yargs from "yargs";
-import tenStackResource from "./ten-stack/ten-stack-resource";
+import { tenStackResource } from "./ten-stack/ten-stack-resource";
 import tenStackInit from "./ten-stack/ten-stack.init";
 import tenStackInstall from "./ten-stack/ten-stack.install";
 import tenStackUpdate from "./ten-stack/ten-stack.update";
