@@ -27,17 +27,27 @@ const tenStackResource = (cli: Argv<{}>) => {
       );
       spinner.stop();
 
+      const projectRoot = join(`${projectPath}/src/app.ts`);
+
       const pth = join(`${projectPath}/src/app.ts`);
       const app = fs.readFileSync(pth).toString();
       if (app.includes(`${args?.resName}.route`)) return;
       let result = addAppRoute(app, args?.resName);
+
       fs.writeFileSync(pth, result);
+
+      shell.cd("/");
+
+      shell.cd(join(projectPath));
+
+      console.log(projectRoot);
+
       shell.exec(
         "npm run pretty",
         {
           silent: true,
         },
-        () => {
+        (code, stdout, stderr) => {
           console.log(chalk.magenta("Resource Was Generated"));
         }
       );
