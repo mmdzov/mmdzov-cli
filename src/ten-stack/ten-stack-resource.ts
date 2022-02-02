@@ -32,9 +32,15 @@ const tenStackResource = (cli: Argv<{}>) => {
       if (app.includes(`${args?.resName}.route`)) return;
       let result = addAppRoute(app, args?.resName);
       fs.writeFileSync(pth, result);
-      shell.exec("npm run pretty", {}, () => {
-        console.log(chalk.magenta("Resource Was Generated"));
-      });
+      shell.exec(
+        "npm run pretty",
+        {
+          silent: true,
+        },
+        () => {
+          console.log(chalk.magenta("Resource Was Generated"));
+        }
+      );
     }
   );
 };
