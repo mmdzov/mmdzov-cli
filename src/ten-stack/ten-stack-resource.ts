@@ -9,6 +9,7 @@ import cliPath from "../utils/cliPath";
 import copyAllFiles from "./../utils/copyAllFiles";
 import Spinner from "../utils/Spinner";
 import chalk from "chalk";
+import addAppRoute from "../utils/addAppRoute";
 
 const tenStackResource = (cli: Argv<{}>) => {
   cli.command(
@@ -25,7 +26,15 @@ const tenStackResource = (cli: Argv<{}>) => {
         join(`${projectPath}/src/components/`, args?.resName)
       );
       spinner.stop();
-      console.log(chalk.magenta("Resource Was Generated"));
+
+      const pth = join(`${projectPath}/src/app.ts`);
+      const app = fs.readFileSync(pth).toString();
+      if (app.includes(`${args?.resName}.route`)) return;
+      let result = addAppRoute(app, args?.resName);
+      fs.writeFileSync(pth, result);
+      shell.exec("npm run pretty", {}, () => {
+        console.log(chalk.magenta("Resource Was Generated"));
+      });
     }
   );
 };

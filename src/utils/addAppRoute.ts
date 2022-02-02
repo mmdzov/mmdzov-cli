@@ -13,7 +13,7 @@ const addAppRoute = (text: string, name: string) => {
     (item) => item
   ) as string[];
 
-  filteredChunks.push(`{ path: "/" , route: ${name}Route },`);
+  filteredChunks.push(`{ path: \"/${name}\" , route: ${name}Route },`);
 
   const index = chunks.findIndex((_, index) => index === chunks.length - 2);
 
