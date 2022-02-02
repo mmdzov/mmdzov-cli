@@ -48,6 +48,7 @@ const tenStackResource = (cli: Argv<{}>) => {
           silent: true,
         },
         (code, stdout, stderr) => {
+          console.clear();
           console.log(chalk.magenta("Resource Was Generated"));
         }
       );
