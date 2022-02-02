@@ -21,7 +21,7 @@ const addAppRoute = (text: string, name: string) => {
 
   let joined = chunks.join("");
 
-  let result = text.replace(/(router.*\[.*\],)/g, joined);
+  let result = text.replace(/(router.*\[.*\],)/g, joined + ",");
 
   const importPattern = /(import .*)/gm;
 
