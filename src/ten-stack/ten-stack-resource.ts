@@ -33,7 +33,7 @@ const tenStackResource = (cli: Argv<{}>) => {
       let result = addAppRoute(app, args?.resName);
       fs.writeFileSync(pth, result);
       shell.exec(
-        'prettier --watch "src/app.ts"',
+        "npm run pretty",
         {
           silent: true,
         },
