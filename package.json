@@ -1,10 +1,11 @@
 {
   "name": "mmdzov-cli",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "",
   "main": "./build/cli.js",
   "bin": {
-    "mmdzov": "./build/cli.js"
+    "mmdzov": "./build/cli.js",
+    "zov": "./build/cli.js"
   },
   "scripts": {
     "start:build": "tsc -w",
