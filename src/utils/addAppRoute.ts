@@ -33,12 +33,11 @@ const addAppRoute = (text: string, name: string) => {
 
   result = result.replace(importPattern, "");
 
-  const linterMatch = /\*\seslint-disable.*/g;
+  let data = result[result.length - 1].split("\n").filter((item) => item);
 
-  const linterChunk = result.match(linterMatch);
+  data.unshift(...imports!);
 
-  linterChunk!.push(...imports!);
-  result = result.replace(linterMatch, linterChunk!.join("\n"));
+  result = data.join("\n\n\n");
 
   return result;
 };
