@@ -4,11 +4,12 @@ import { Argv } from "yargs";
 import shell from "shelljs";
 import Spinner from "../utils/Spinner";
 import chalk from "chalk";
-import path from "path";
+import path, { join } from "path";
 import fs from "fs";
 import typingMode from "../utils/typingMode";
 import asyncExec from "../utils/asyncExec";
 import globalInstall from "../utils/globalInstall";
+import { cwd } from "process";
 
 const spin = new Spinner();
 
@@ -19,13 +20,17 @@ const cloneProject = async (args: any) => {
   if ((args?.projectName as string).match(/^[.]$/)) clonePath = "here";
   else clonePath = args?.projectName! as string;
 
+  const projectPath = shell.pwd().stdout;
   try {
     const repo = "https://github.com/mytls/ten-stack-starter.git";
+
     await asyncExec(`degit ${repo} ${args.projectName}`, { windowsHide: true });
     await globalInstall("ten-stack", repo, {
       noSpinner: true,
     });
+
     if (clonePath !== "here") shell.cd(clonePath);
+    else if (clonePath === "here") shell.cd(join(projectPath));
 
     spinner.stop();
     console.log(chalk.green("Successfully Cloned"));
@@ -34,7 +39,8 @@ const cloneProject = async (args: any) => {
     console.log(chalk.red("maybe directory is not empty"));
     console.warn(e);
   }
-  return clonePath;
+
+  return projectPath;
 };
 
 const initGit = async () => {
@@ -58,7 +64,7 @@ const installDeps = async () => {
   }
 
   spinner.stop();
-  console.log(chalk.green("Dependencies successfully installed"));
+  console.log(chalk.magenta("Dependencies successfully installed"));
 };
 
 const tenStackInit = (cli: Argv<{}>) => {
@@ -72,18 +78,17 @@ const tenStackInit = (cli: Argv<{}>) => {
         return;
       }
 
-      let clonePath = "";
+      let projectPath = "";
 
-      clonePath = await cloneProject(args);
+      projectPath = await cloneProject(args);
       await initGit();
       await installDeps();
       const overwriteSpin = spin.start("Overwriting package.json");
-      const pwdChunks = shell.pwd().stdout.split("\\");
+      const pwdChunks = projectPath.split("\\");
       const route = path.join(shell.pwd().stdout, "/package.json");
       const result = fs.readFileSync(route).toString();
       const packageJson = JSON.parse(result);
-      const projectName =
-        clonePath === "here" ? pwdChunks[pwdChunks.length - 1] : clonePath;
+      const projectName = pwdChunks[pwdChunks.length - 1];
       packageJson.name = projectName;
       delete packageJson.repository;
       delete packageJson.bugs;
@@ -92,7 +97,7 @@ const tenStackInit = (cli: Argv<{}>) => {
       fs.writeFileSync(route, JSON.stringify(packageJson));
       await asyncExec("npm run pretty");
       overwriteSpin.stop();
-      console.log(chalk.green("The codes were sorted and cleaned"));
+      console.log(chalk.magenta("The codes were sorted and cleaned"));
 
       const initProjectSpin = spin.start("Initializing project");
       shell.mkdir(["dist"]);
