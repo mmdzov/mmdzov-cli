@@ -21,6 +21,7 @@ const cloneProject = async (args: any) => {
   else clonePath = args?.projectName! as string;
 
   const projectPath = shell.pwd().stdout;
+
   try {
     const repo = "https://github.com/mytls/ten-stack-starter.git";
 
@@ -29,7 +30,7 @@ const cloneProject = async (args: any) => {
       noSpinner: true,
     });
 
-    if (clonePath !== "here") shell.cd(clonePath);
+    if (clonePath !== "here") shell.cd(join(projectPath, `/${clonePath}`));
     else if (clonePath === "here") shell.cd(join(projectPath));
 
     spinner.stop();
@@ -78,9 +79,7 @@ const tenStackInit = (cli: Argv<{}>) => {
         return;
       }
 
-      let projectPath = "";
-
-      projectPath = await cloneProject(args);
+      const projectPath = await cloneProject(args);
       await initGit();
       await installDeps();
       const overwriteSpin = spin.start("Overwriting package.json");
