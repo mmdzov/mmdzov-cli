@@ -25,9 +25,6 @@ const tenStackResource = (cli: Argv<{}>) => {
         srcpath,
         join(`${projectPath}/src/components/`, args?.resName)
       );
-      spinner.stop();
-
-      const projectRoot = join(`${projectPath}/src/app.ts`);
 
       const pth = join(`${projectPath}/src/app.ts`);
       const app = fs.readFileSync(pth).toString();
@@ -40,14 +37,13 @@ const tenStackResource = (cli: Argv<{}>) => {
 
       shell.cd(join(projectPath));
 
-      console.log(projectRoot);
-
       shell.exec(
         "npm run pretty",
         {
           silent: true,
         },
         (code, stdout, stderr) => {
+          spinner.stop();
           console.clear();
           console.log(chalk.magenta("Resource Was Generated"));
         }

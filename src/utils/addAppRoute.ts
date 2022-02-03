@@ -37,7 +37,11 @@ const addAppRoute = (text: string, name: string) => {
 
   data.unshift(...imports!);
 
-  result = data.join("\n\n\n");
+  let _result = result.split("\n");
+
+  _result.unshift(data.join("\n"));
+
+  result = _result.join("\n\n");
 
   return result;
 };
