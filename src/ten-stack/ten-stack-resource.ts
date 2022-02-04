@@ -29,7 +29,6 @@ const tenStackResource = (cli: Argv<{}>) => {
       const pth = join(`${projectPath}/src/app.ts`);
       const app = fs.readFileSync(pth).toString();
       if (app.includes(`${args?.resName}.route`)) return;
-      console.log("projectPath:", projectPath);
       let result = addAppRoute(app, args?.resName);
 
       fs.writeFileSync(pth, result);

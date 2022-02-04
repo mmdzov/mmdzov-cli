@@ -1,5 +1,6 @@
 const addAppRoute = (text: string, name: string) => {
-  console.log(text, name);
+  const routePath = `{ path: \"/${name}\" , route: ${name.toUpperCase()}_ROUTE },`;
+  const importRoute = `import ${name.toUpperCase()}_ROUTE from \"./components/${name}/${name}.routes\";`;
 
   const pattern = /(router:[\s]?\[([\s\S]*?(?=\n.*?=|\]).*))/g;
   let chunks = (text! as string)
@@ -9,35 +10,23 @@ const addAppRoute = (text: string, name: string) => {
 
   chunks = chunks.filter((item) => item.trim().length > 0);
 
-  let additemToChunk = chunks.map((item, index) => {
-    item = item.trim()
-    if (index !== 0 && index !== chunks.length - 1) return `{${item}},`;
-    return false;
+  chunks = chunks.map((item, i) => {
+    item = item.trim();
+    if (i !== 0 && i !== chunks.length - 1) {
+      return `{ ${item} },`;
+    }
+    return item;
   });
 
-  let filteredChunks: string[] = additemToChunk.filter(
-    (item) => item
-  ) as string[];
+  chunks.splice(chunks.length - 1, 0, routePath);
 
-  filteredChunks.push(
-    `{ path: \"/${name}\" , route: ${name.toUpperCase()}_ROUTE },`
-  );
-
-  const index = chunks.findIndex((_, index) => index === chunks.length - 2);
-
-  chunks.splice(1, index, ...filteredChunks);
-
-  let joined = chunks.join("");
-
-  let result = text.replace(/(router.*\[.*\],)/g, joined + ",");
+  let result = text.replace(pattern, chunks.join("\n"));
 
   const importPattern = /(import .*)/gm;
 
   let imports = result.match(importPattern);
 
-  imports!.push(
-    `import ${name.toUpperCase()}_ROUTE from \"./components/${name}/${name}.routes\";`
-  );
+  imports!.push(importRoute);
 
   result = result.replace(importPattern, "");
 
