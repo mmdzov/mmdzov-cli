@@ -32,6 +32,12 @@ const autoCommit = (cli: Argv<{}>) => {
         if (os.includes("linux")) shell.exec(`rm ${file}`, { silent: true });
       };
 
+      console.log(
+        chalk.magenta(
+          "Performing commit and push automatically. You can rest :)"
+        )
+      );
+
       setInterval(() => {
         if (fs.existsSync(join(currentPath, `/${file1}`))) {
           removeFile(file1);
