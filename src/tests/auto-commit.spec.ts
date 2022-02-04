@@ -3,7 +3,7 @@ import { describe } from "mocha";
 
 describe("should to be add commit", () => {
   exec(
-    'mmdzov auto-commit -s 1 -m "hello world" --path C:\\Users\\pars\\Desktop\\@mmdzov\\autocommit',
+    'mmdzov auto-commit -p 10 -s 1 -m "hello world" --path C:\\Users\\pars\\Desktop\\@mmdzov\\autocommit',
     (err, stdout, stderr) => {
       //   console.log(err, stdout, stderr);
     }

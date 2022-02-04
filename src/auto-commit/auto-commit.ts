@@ -11,7 +11,7 @@ const autoCommit = (cli: Argv<{}>) => {
     () => {},
     (yrg) => {
       if (!yrg._.includes("auto-commit")) return;
-      const { s: speed, m: message, path } = yrg;
+      const { s: speed, p: pushSpeed, m: message, path } = yrg;
       if (!path) {
         console.log(chalk.redBright("path not defined --path=yourpath"));
         return;
@@ -41,11 +41,22 @@ const autoCommit = (cli: Argv<{}>) => {
           shell.touch(`${file1}`);
         } else shell.touch(`${file1}`);
 
-        shell.exec(
-          `git add . & git commit -m \"${message}\" & git push -u origin main`,
-          { silent: true }
-        );
+        if (!pushSpeed) {
+          shell.exec(
+            `git add . & git commit -m \"${message}\" & git push -u origin main`,
+            { silent: true }
+          );
+        }
       }, +(speed as number) * 1000);
+
+      if (pushSpeed) {
+        setInterval(() => {
+          shell.exec(
+            `git add . & git commit -m \"${message}\" & git push -u origin main`,
+            { silent: true }
+          );
+        }, +(pushSpeed as number) * 1000);
+      }
     }
   );
 };
