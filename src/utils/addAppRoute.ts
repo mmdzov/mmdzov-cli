@@ -1,10 +1,16 @@
 const addAppRoute = (text: string, name: string) => {
-  const chunks = (text! as string)
-    .match(/(router.*\[.*\])/g)!
+  console.log(text, name);
+
+  const pattern = /(router:[\s]?\[([\s\S]*?(?=\n.*?=|\]).*))/g;
+  let chunks = (text! as string)
+    .match(pattern)!
     .join("")
     .split(/[\{\}],?/g);
 
+  chunks = chunks.filter((item) => item.trim().length > 0);
+
   let additemToChunk = chunks.map((item, index) => {
+    item = item.trim()
     if (index !== 0 && index !== chunks.length - 1) return `{${item}},`;
     return false;
   });
@@ -13,7 +19,9 @@ const addAppRoute = (text: string, name: string) => {
     (item) => item
   ) as string[];
 
-  filteredChunks.push(`{ path: \"/${name}\" , route: ${name}Route },`);
+  filteredChunks.push(
+    `{ path: \"/${name}\" , route: ${name.toUpperCase()}_ROUTE },`
+  );
 
   const index = chunks.findIndex((_, index) => index === chunks.length - 2);
 
@@ -28,7 +36,7 @@ const addAppRoute = (text: string, name: string) => {
   let imports = result.match(importPattern);
 
   imports!.push(
-    `import ${name}Route from \"./components/${name}/${name}.routes\";`
+    `import ${name.toUpperCase()}_ROUTE from \"./components/${name}/${name}.routes\";`
   );
 
   result = result.replace(importPattern, "");
