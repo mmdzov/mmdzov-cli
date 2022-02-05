@@ -19,11 +19,13 @@ cli.command(
   "mmdzov help",
   () => {},
   () => {
-    var table = new Table({
-      head: ["description", "command"],
+    const head = ["description", "command"];
+
+    const tenStackHelp = new Table({
+      head: head,
     });
 
-    table.push(
+    tenStackHelp.push(
       {
         "install ten": "mmdzov i ten",
       },
@@ -39,7 +41,24 @@ cli.command(
     );
 
     console.log(chalk.bold(chalk.blueBright("TEN-Stack-Starter")));
-    console.log(table.toString());
+    console.log(tenStackHelp.toString());
+
+    const autoCommitHelp = new Table({
+      head,
+    });
+
+    autoCommitHelp.push({
+      "auto commit":
+        'mmdzov auto-commit  -s 5 -m "<commit-msg>" --path <dir>',
+    });
+
+    console.log(chalk.bold(chalk.blueBright("Auto-Commit")));
+    console.log(autoCommitHelp.toString());
+    console.log(
+      chalk.cyanBright(
+        "-s === commit speed/sec , -m === commit message , -p === push speed/sec optional , --path project directory"
+      )
+    );
   }
 );
 
