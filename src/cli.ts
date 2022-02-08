@@ -9,6 +9,7 @@ import tenStackUpdate from "./ten-stack/ten-stack.update";
 import typingMode from "./utils/typingMode";
 import Table from "cli-table";
 import autoCommit from "./auto-commit/auto-commit";
+import tagTest from "./tag-test/tagTest";
 
 const cli = yargs;
 
@@ -48,8 +49,7 @@ cli.command(
     });
 
     autoCommitHelp.push({
-      "auto commit":
-        'mmdzov auto-commit  -s 5 -m "<commit-msg>" --path <dir>',
+      "auto commit": 'mmdzov auto-commit  -s 5 -m "<commit-msg>" --path <dir>',
     });
 
     console.log(chalk.bold(chalk.blueBright("Auto-Commit")));
@@ -67,6 +67,7 @@ tenStackResource(cli);
 tenStackInstall(cli);
 tenStackUpdate(cli);
 autoCommit(cli);
+tagTest(cli);
 
 cli.command(
   "$0",

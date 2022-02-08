@@ -11,7 +11,6 @@ describe("should to be copy and paste files", async () => {
   // const resName = "shop";
   // it("should to be generate new resource", () => {
   //   const pth = join(dest, `\\components\\${resName}`);
-
   //   copyAllFiles(pth, join(cwd(), "/resource-example"));
   // });
   // const pth = join(dest, "\\app.ts");
@@ -19,7 +18,6 @@ describe("should to be copy and paste files", async () => {
   // if (app.includes(`${resName}.route`)) return;
   // let result = addAppRoute(app, resName);
   // console.log(result);
-
   // fs.writeFileSync(pth, result);
 });
 
@@ -30,3 +28,13 @@ describe("should to be copy and paste files", async () => {
 //   rs = rs.replace(/Home/gm, "Test");
 //   fs.writeFileSync(dest, rs);
 // });
+
+// #hello
+describe("should to be return hello world", () => {
+  console.log("Hello world");
+});
+
+// #hi
+describe("should to be return hello world", () => {
+  console.log("hello world");
+});

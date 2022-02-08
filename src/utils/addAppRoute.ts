@@ -1,10 +1,11 @@
+import { routePattern } from "./patterns";
+
 const addAppRoute = (text: string, name: string) => {
   const routePath = `{ path: \"/${name}\" , route: ${name.toUpperCase()}_ROUTE },`;
   const importRoute = `import ${name.toUpperCase()}_ROUTE from \"./components/${name}/${name}.routes\";`;
 
-  const pattern = /(router:[\s]?\[([\s\S]*?(?=\n.*?=|\]).*))/g;
   let chunks = (text! as string)
-    .match(pattern)!
+    .match(routePattern)!
     .join("")
     .split(/[\{\}],?/g);
 
@@ -20,7 +21,7 @@ const addAppRoute = (text: string, name: string) => {
 
   chunks.splice(chunks.length - 1, 0, routePath);
 
-  let result = text.replace(pattern, chunks.join("\n"));
+  let result = text.replace(routePattern, chunks.join("\n"));
 
   const importPattern = /(import .*)/gm;
 
