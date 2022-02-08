@@ -5,13 +5,14 @@ import fs from "fs";
 import chalk from "chalk";
 import testFiles from "./testFiles";
 import Spinner from "../utils/Spinner";
+import asyncExec from "../utils/asyncExec";
 
 const tagTest = (cli: Argv<{}>) => {
   cli.command(
     "tag-test [options]",
     "Tag tests to run one or more specific tests",
     () => {},
-    (yrg) => {
+    async (yrg) => {
       if (yrg?._[0] !== "tag-test") return;
       let spin: any = null;
       if (yrg?.w) {
@@ -21,8 +22,15 @@ const tagTest = (cli: Argv<{}>) => {
       const cacheDir = join(shell.pwd().stdout, ".cache");
       const cacheTestDir = join(shell.pwd().stdout, ".cache/tests");
 
+      if (fs.existsSync(cacheDir)) {
+        const os = process.platform;
+
+        if (os.includes("win")) await asyncExec("rd /s /q .cache");
+        if (os.includes("linux")) await asyncExec("rm -rf .cache");
+      }
+
       if (!fs.existsSync(cacheDir)) fs.mkdirSync(cacheDir);
-      if (!fs.existsSync(cacheTestDir)) fs.mkdirSync(cacheTestDir);
+      fs.mkdirSync(cacheTestDir);
 
       const execute = () => {
         const tags: string[] = (yrg?.t as string)?.split(",") || [
