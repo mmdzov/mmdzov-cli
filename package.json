@@ -25,6 +25,7 @@
     "chokidar": "^3.5.3",
     "cli-table": "^0.3.11",
     "degit": "^2.8.4",
+    "enquirer": "^2.3.6",
     "mocha": "^9.2.0",
     "ora": "^5.4.0",
     "readline": "^1.3.0",

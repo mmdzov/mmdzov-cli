@@ -10,6 +10,7 @@ import typingMode from "./utils/typingMode";
 import Table from "cli-table";
 import autoCommit from "./auto-commit/auto-commit";
 import tagTest from "./tag-test/tagTest";
+import tag from "./tag/tag";
 
 const cli = yargs;
 
@@ -52,11 +53,30 @@ cli.command(
       "auto commit": 'mmdzov auto-commit  -s 5 -m "<commit-msg>" --path <dir>',
     });
 
+    console.log("\n");
     console.log(chalk.bold(chalk.blueBright("Auto-Commit")));
     console.log(autoCommitHelp.toString());
     console.log(
       chalk.cyanBright(
         "-s === commit speed/sec , -m === commit message , -p === push speed/sec optional , --path project directory"
+      )
+    );
+
+    const singleTestHelp = new Table({
+      head,
+    });
+
+    singleTestHelp.push({
+      "single-test": "mmdzov tag --root src --focus spec.ts",
+    });
+
+    console.log("\n");
+    console.log(chalk.bold(chalk.blueBright("mocha single-test auto-watch")));
+    console.log(singleTestHelp.toString());
+    console.log(
+      chalk.cyanBright(
+        `--root === Where should I look for tests ? , --focus === Mark the test file. such as test.ts or spec.ts. For example, the names of all your test files have spec.ts, such as foo.spec.ts or bar.spec.ts
+      I need to know what kind of files to look for `
       )
     );
   }
@@ -68,6 +88,7 @@ tenStackInstall(cli);
 tenStackUpdate(cli);
 autoCommit(cli);
 tagTest(cli);
+tag(cli);
 
 cli.command(
   "$0",
